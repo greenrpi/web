@@ -8,8 +8,11 @@ import {
   CardContent,
   CardActions,
   Button,
+  IconButton,
 } from '@material-ui/core';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import styled from 'styled-components';
+import Store from '../store/store';
 
 const Container = styled.div`
   display: flex;
@@ -29,6 +32,12 @@ const Container = styled.div`
 `;
 
 const Dash = () => {
+  const store = Store.useStore();
+
+  const onRefresh = () => {
+    store.set('credentials')(store.get('credentials'));
+  };
+
   return (
     <Container>
       <AppBar position="static" color="primary">
@@ -36,6 +45,9 @@ const Dash = () => {
           <Typography variant="h6" color="inherit">
             GreenRPi
           </Typography>
+          <IconButton onClick={onRefresh} color="inherit">
+            <RefreshIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 

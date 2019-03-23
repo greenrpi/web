@@ -26,3 +26,4 @@ dist
 
 # Configuration
 src/config.json
+docker-compose.yml

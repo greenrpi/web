@@ -8,6 +8,7 @@ function init(username: string, password: string) {
     database: config.DB_NAME,
     username,
     password,
+    protocol: location.protocol === 'http:' ? 'http' : 'https',
     schema: [
       {
         measurement: 'temperature',

@@ -19,13 +19,11 @@ const effects: StoreEffects = store => {
           'Unable to initialize, make sure your credentials are correct.',
       };
       store.set('snackbars')([...store.get('snackbars'), snack]);
-      store.set('credentials')(undefined);
       return;
     }
 
-    const result = await influx.query('SELECT * FROM temperatures');
+    const result = await influx.query('SELECT * FROM temperature');
     console.log('Temperatures', result);
-    store.set('credentials')(undefined);
     store.set('initialized')(true);
   });
 
