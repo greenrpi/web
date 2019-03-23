@@ -6,6 +6,7 @@ function init(username: string, password: string) {
   return new Influx.InfluxDB({
     host: config.DB_HOST,
     database: config.DB_NAME,
+    port: config.DB_PORT,
     username,
     password,
     protocol: location.protocol === 'http:' ? 'http' : 'https',
