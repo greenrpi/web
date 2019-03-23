@@ -1,0 +1,53 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Web part for data showcase and control",
+  "main": "src/index.html",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "formik": "^1.5.1",
+    "formik-material-ui": "0.0.16",
+    "influx": "^5.0.0-alpha.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "rxjs": "^6.4.0",
+    "styled-components": "^4.2.0",
+    "typeface-roboto": "0.0.54",
+    "typescript": "^3.3.4000",
+    "undux": "^5.0.0-beta.21",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^16.8.3",
+    "@types/styled-components": "^4.1.12",
+    "@types/yup": "^0.26.12",
+    "babel-core": "^6.26.3",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "1.16.4"
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "clean": "rm -rf .cache && rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenrpi/web.git"
+  },
+  "contributors": [
+    "Jakub Duras <jakub@duras.me>",
+    "Stefan Duras"
+  ],
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/greenrpi/web/issues"
+  },
+  "homepage": "https://github.com/greenrpi/web#readme",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
