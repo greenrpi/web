@@ -5,7 +5,9 @@ import brown from '@material-ui/core/colors/brown';
 const theme = createMuiTheme({
   palette: {
     primary: brown,
-    secondary: green,
+    secondary: {
+      main: green[600],
+    },
     contrastThreshold: 3,
   },
   typography: {

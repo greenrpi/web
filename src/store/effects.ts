@@ -9,6 +9,8 @@ const effects: StoreEffects = store => {
 
     influx = initInflux(credentials.name, credentials.password);
 
+    store.set('credentials')(undefined);
+
     // Check credentials by checking access to the db
     try {
       await influx.getMeasurements();

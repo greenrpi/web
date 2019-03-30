@@ -78,7 +78,7 @@ const Login = () => {
                     disabled={isSubmitting}
                     onClick={submitForm}
                   >
-                    {isSubmitting ? 'Authenticatting...' : 'Authenticate'}
+                    {isSubmitting ? 'Authenticating...' : 'Authenticate'}
                   </Button>
                 </FieldsWrapper>
               </Form>
