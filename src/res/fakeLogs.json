@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "action": "Open windows to 50%",
+    "date": "5 seconds ago"
+  },
+  {
+    "id": 2,
+    "action": "Turn on the water pump",
+    "date": "1 minute ago"
+  },
+  {
+    "id": 3,
+    "action": "Manual: Close windows",
+    "date": "35 minutes ago"
+  },
+  {
+    "id": 4,
+    "action": "Open windows to 100%",
+    "date": "1 hour ago"
+  },
+  {
+    "id": 5,
+    "action": "Close windows",
+    "date": "4 hours ago"
+  },
+  {
+    "id": 6,
+    "action": "Turn on the water pump",
+    "date": "6 hours ago"
+  },
+  {
+    "id": 7,
+    "action": "Turn on the water pump",
+    "date": "yesterday"
+  },
+  {
+    "id": 8,
+    "action": "Open windows to 50%",
+    "date": "yesterday"
+  }
+]

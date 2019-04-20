@@ -12,19 +12,22 @@
     "influx": "^5.0.0-alpha.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "recharts": "^1.5.0",
     "rxjs": "^6.4.0",
     "styled-components": "^4.2.0",
     "typeface-roboto": "0.0.54",
-    "typescript": "^3.3.4000",
+    "typescript": "^3.5.0-dev.20190419",
     "undux": "^5.0.0-beta.21",
     "yup": "^0.27.0"
   },
   "devDependencies": {
     "@types/react-dom": "^16.8.3",
+    "@types/recharts": "^1.1.16",
     "@types/styled-components": "^4.1.12",
     "@types/yup": "^0.26.12",
     "babel-core": "^6.26.3",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
     "prettier": "1.16.4"
   },
   "scripts": {
