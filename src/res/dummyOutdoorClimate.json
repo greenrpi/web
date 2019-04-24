@@ -1,0 +1,37 @@
+[
+  {
+    "date": "Sun",
+    "temperature": 17.3,
+    "windSpeed": 8.4
+  },
+  {
+    "date": "Mon",
+    "temperature": 21.2,
+    "windSpeed": 6.2
+  },
+  {
+    "date": "Tue",
+    "temperature": 12.4,
+    "windSpeed": 15.4
+  },
+  {
+    "date": "Wed",
+    "temperature": 13.8,
+    "windSpeed": 13.4
+  },
+  {
+    "date": "Thu",
+    "temperature": 17.4,
+    "windSpeed": 17.4
+  },
+  {
+    "date": "Fri",
+    "temperature": 22.3,
+    "windSpeed": 10.2
+  },
+  {
+    "date": "Sat",
+    "temperature": 20.9,
+    "windSpeed": 8.4
+  }
+]

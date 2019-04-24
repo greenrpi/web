@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Typography,
 } from '@material-ui/core';
 import styled from 'styled-components';
 
@@ -17,6 +18,10 @@ interface Props {
 const ScrollablePaper = styled(Paper)`
   height: 100%;
 
+  h3 {
+    padding: 1rem 0 0 1rem;
+  }
+
   tbody {
     overflow-y: auto;
   }
@@ -24,6 +29,10 @@ const ScrollablePaper = styled(Paper)`
 
 const TableCard: FC<Props> = ({ title, rows }) => (
   <ScrollablePaper>
+    <Typography variant="subtitle1" component="h3">
+      {title}
+    </Typography>
+
     <Table>
       <TableHead>
         <TableRow>

@@ -11,10 +11,14 @@ import humidityIcon from '../res/icons/humidity.svg';
 import soilIcon from '../res/icons/soil.svg';
 import ReadingCard from './ReadingCard';
 import GraphCard from './GraphCard';
-import fakeData from '../res/fakeData.json';
-import fakeLogs from '../res/fakeLogs.json';
+import dummyIndoorClimate from '../res/dummyIndoorClimate.json';
+import dummyLogs from '../res/dummyLogs.json';
+import dummyOutdoorClimate from '../res/dummyOutdoorClimate.json';
+import dummyPowerSupply from '../res/dummyPowerSupply.json';
+import dummySoilClimate from '../res/dummySoilClimate.json';
 import ControlCard from './ControlCard';
 import TableCard from './TableCard';
+import SplitReadingCard from './SplitReadingCard';
 
 const Logo = styled.img`
   height: 2rem;
@@ -109,7 +113,13 @@ const Dash = () => {
             <ReadingCard name="Humidity" value="20%" iconPath={humidityIcon} />
           </Grid>
           <Grid item xs={12}>
-            <ReadingCard name="Soil" value="20%" iconPath={soilIcon} />
+            <SplitReadingCard
+              nameLeft="Upper Soil"
+              valueLeft="13 °C/20%"
+              nameRight="Lower Soil"
+              valueRight="14 °C/20%"
+              iconPath={soilIcon}
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -118,25 +128,38 @@ const Dash = () => {
         <Grid item md={6} xs={12}>
           <GraphCard
             title="Power supply"
-            data={fakeData}
-            yAxis="voltage"
-            xAxis="date"
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <GraphCard
-            title="Indoor climate"
-            data={fakeData}
+            data={dummyPowerSupply}
             yAxis="voltage"
             yAxisRight="input"
             xAxis="date"
           />
         </Grid>
         <Grid item md={6} xs={12}>
-          <GraphCard title="Outdoor climate" data={fakeData} yAxis="voltage" />
+          <GraphCard
+            title="Indoor climate"
+            data={dummyIndoorClimate}
+            yAxis="temperature"
+            yAxisRight="humidity"
+            xAxis="date"
+          />
         </Grid>
         <Grid item md={6} xs={12}>
-          <GraphCard title="Soil climate" data={fakeData} yAxis="voltage" />
+          <GraphCard
+            title="Outdoor climate"
+            data={dummyOutdoorClimate}
+            yAxis="temperature"
+            yAxisRight="humidity"
+            xAxis="date"
+          />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <GraphCard
+            title="Soil climate"
+            data={dummySoilClimate}
+            yAxis="temperature"
+            yAxisRight="humidity"
+            xAxis="date"
+          />
         </Grid>
       </Grid>
 
@@ -145,24 +168,31 @@ const Dash = () => {
           <Grid item xs={12}>
             <ControlCard
               name="Power controls"
-              description="Currently running."
-            />
+              description="Microcomputer currently running."
+            >
+              <Button>Shutdown</Button>
+              <Button>Reboot</Button>
+            </ControlCard>
           </Grid>
           <Grid item xs={12}>
-            <ControlCard name="Windows" description="Currently fully open." />
+            <ControlCard name="Windows" description="Currently fully open.">
+              <Button>Close</Button>
+              <Button>Open to 50%</Button>
+              <Button>Open</Button>
+            </ControlCard>
           </Grid>
           <Grid item xs={12}>
-            <ControlCard
-              name="Water pump"
-              description="Currently not running."
-            />
+            <ControlCard name="Water pump" description="Currently not running.">
+              <Button>Turn off</Button>
+              <Button>Turn on</Button>
+            </ControlCard>
           </Grid>
         </Grid>
         <Grid item md={4} sm={6} xs={12}>
           <TableCard title="Scheduled Actions" rows={[]} />
         </Grid>
         <Grid item md={4} sm={6} xs={12}>
-          <TableCard title="Actions log" rows={fakeLogs} />
+          <TableCard title="Actions log" rows={dummyLogs} />
         </Grid>
       </Grid>
     </Container>

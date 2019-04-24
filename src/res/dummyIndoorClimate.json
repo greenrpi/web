@@ -1,0 +1,37 @@
+[
+  {
+    "date": "Sun",
+    "temperature": 26.4,
+    "humidity": 68
+  },
+  {
+    "date": "Mon",
+    "temperature": 28.4,
+    "humidity": 54
+  },
+  {
+    "date": "Tue",
+    "temperature": 16.8,
+    "humidity": 84
+  },
+  {
+    "date": "Wed",
+    "temperature": 20.8,
+    "humidity": 75
+  },
+  {
+    "date": "Thu",
+    "temperature": 26.4,
+    "humidity": 59
+  },
+  {
+    "date": "Fri",
+    "temperature": 29.5,
+    "humidity": 63
+  },
+  {
+    "date": "Sat",
+    "temperature": 28.7,
+    "humidity": 45
+  }
+]
