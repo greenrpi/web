@@ -15,12 +15,26 @@ type State = {
     password: string;
   };
   snackbars: Array<Snackbar>;
+  lastUpdate?: Date;
+  current: {
+    outdoorTemp?: number;
+    windSpeed?: number;
+    rain?: string;
+    indoorTemp?: number;
+    indoorHumidity?: number;
+    soilUpperTemp?: number;
+    soilLowerTemp?: number;
+    soilUpperHumidity?: number;
+    soilLowerHumidity?: number;
+  };
 };
 
 const initialState: State = {
   initialized: false,
   credentials: undefined,
   snackbars: [],
+  lastUpdate: undefined,
+  current: {},
 };
 
 const Store = createConnectedStore(initialState, effects);

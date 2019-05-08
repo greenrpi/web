@@ -15,7 +15,9 @@ interface Props {
   title: string;
   data: any[];
   yAxis: string;
+  yAxisUnit: string;
   yAxisRight?: string;
+  yAxisRightUnit?: string;
   xAxis?: string;
 }
 
@@ -31,7 +33,15 @@ const Contents = styled.div`
   }
 `;
 
-const GraphCard: FC<Props> = ({ title, data, yAxis, yAxisRight, xAxis }) => (
+const GraphCard: FC<Props> = ({
+  title,
+  data,
+  yAxis,
+  yAxisUnit,
+  yAxisRight,
+  yAxisRightUnit,
+  xAxis,
+}) => (
   <Paper>
     <Contents>
       <Typography variant="subtitle1" gutterBottom>
@@ -50,6 +60,7 @@ const GraphCard: FC<Props> = ({ title, data, yAxis, yAxisRight, xAxis }) => (
             yAxisId="left"
             type="monotone"
             dataKey={yAxis}
+            unit={yAxisUnit}
             stroke={theme.palette.primary.main}
           />
           {yAxisRight && (
@@ -57,6 +68,7 @@ const GraphCard: FC<Props> = ({ title, data, yAxis, yAxisRight, xAxis }) => (
               yAxisId="right"
               type="monotone"
               dataKey={yAxisRight}
+              unit={yAxisRightUnit}
               stroke={theme.palette.secondary.main}
             />
           )}

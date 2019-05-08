@@ -19,6 +19,7 @@ import dummySoilClimate from '../res/dummySoilClimate.json';
 import ControlCard from './ControlCard';
 import TableCard from './TableCard';
 import SplitReadingCard from './SplitReadingCard';
+import LastUpdated from './LastUpdated';
 
 const Logo = styled.img`
   height: 2rem;
@@ -31,34 +32,40 @@ const Container = styled.div`
   width: 96vw;
   margin-left: 2vw;
   padding: 1rem;
+`;
 
-  > .MuiGrid-container-1 {
-    width: 100%;
-    max-width: 64rem;
-    margin: 0.5rem 0;
-  }
+const GridContainer = styled(Grid)`
+  max-width: 64rem;
+  /* TODO: Get rid of the important */
+  margin: 0.5rem 0 !important;
+`;
 
-  > .MuiGrid-container-1:first-of-type {
-    margin: 2rem 0;
-  }
+const HeadingGridContainer = styled(GridContainer)`
+  /* TODO: Get rid of the important */
+  margin: 2rem 0;
 `;
 
 const Dash = () => {
   const store = Store.useStore();
 
-  const onRefresh = () => {
-    store.set('credentials')(store.get('credentials'));
-  };
+  const current = store.get('current');
+  const valueOrNa = (value?: number | string) =>
+    value === undefined ? 'N/A' : value;
 
   return (
     <Container>
-      <Grid container spacing={16} justify="space-between" alignItems="center">
+      <HeadingGridContainer
+        container
+        spacing={16}
+        justify="space-between"
+        alignItems="center"
+      >
         <Grid item>
           <Logo src={logo} alt="Logo GreenRPi" />
         </Grid>
 
         <Grid item>
-          <Typography>Last updated: 10 seconds ago</Typography>
+          <LastUpdated />
         </Grid>
 
         <Grid item>
@@ -69,9 +76,9 @@ const Dash = () => {
             Logout
           </Button>
         </Grid>
-      </Grid>
+      </HeadingGridContainer>
 
-      <Grid
+      <GridContainer
         container
         spacing={16}
         alignItems="baseline"
@@ -85,15 +92,23 @@ const Dash = () => {
           <Grid item sm={6} xs={12}>
             <ReadingCard
               name="Temperature"
-              value="13 °C"
+              value={`${valueOrNa(current.outdoorTemp)} °C`}
               iconPath={temperatureIcon}
             />
           </Grid>
           <Grid item sm={6} xs={12}>
-            <ReadingCard name="Wind speed" value="5 m/s" iconPath={windIcon} />
+            <ReadingCard
+              name="Wind speed"
+              value={`${valueOrNa(current.windSpeed)} m/s`}
+              iconPath={windIcon}
+            />
           </Grid>
           <Grid item sm={6} xs={12}>
-            <ReadingCard name="Rain" value="none" iconPath={rainIcon} />
+            <ReadingCard
+              name="Rain"
+              value={valueOrNa(current.rain)}
+              iconPath={rainIcon}
+            />
           </Grid>
         </Grid>
 
@@ -105,32 +120,42 @@ const Dash = () => {
           <Grid item sm={6} xs={12}>
             <ReadingCard
               name="Temperature"
-              value="13 °C"
+              value={`${valueOrNa(current.indoorTemp)} °C`}
               iconPath={temperatureIcon}
             />
           </Grid>
           <Grid item sm={6} xs={12}>
-            <ReadingCard name="Humidity" value="20%" iconPath={humidityIcon} />
+            <ReadingCard
+              name="Humidity"
+              value={`${valueOrNa(current.indoorHumidity)} %`}
+              iconPath={humidityIcon}
+            />
           </Grid>
           <Grid item xs={12}>
             <SplitReadingCard
-              nameLeft="Upper Soil"
-              valueLeft="13 °C/20%"
-              nameRight="Lower Soil"
-              valueRight="14 °C/20%"
+              nameLeft="Soil - Upper"
+              valueLeft={`${valueOrNa(current.soilUpperTemp)} °C/${valueOrNa(
+                current.soilUpperHumidity,
+              )} %`}
+              nameRight="Soil - Lower"
+              valueRight={`${valueOrNa(current.soilLowerTemp)} °C/${valueOrNa(
+                current.soilLowerHumidity,
+              )} %`}
               iconPath={soilIcon}
             />
           </Grid>
         </Grid>
-      </Grid>
+      </GridContainer>
 
-      <Grid container spacing={16} alignItems="baseline">
+      <GridContainer container spacing={16} alignItems="baseline">
         <Grid item md={6} xs={12}>
           <GraphCard
             title="Power supply"
             data={dummyPowerSupply}
             yAxis="voltage"
+            yAxisUnit="V"
             yAxisRight="input"
+            yAxisRightUnit="A"
             xAxis="date"
           />
         </Grid>
@@ -139,7 +164,9 @@ const Dash = () => {
             title="Indoor climate"
             data={dummyIndoorClimate}
             yAxis="temperature"
+            yAxisUnit="°C"
             yAxisRight="humidity"
+            yAxisRightUnit="%"
             xAxis="date"
           />
         </Grid>
@@ -148,7 +175,9 @@ const Dash = () => {
             title="Outdoor climate"
             data={dummyOutdoorClimate}
             yAxis="temperature"
+            yAxisUnit="°C"
             yAxisRight="humidity"
+            yAxisRightUnit="%"
             xAxis="date"
           />
         </Grid>
@@ -157,13 +186,20 @@ const Dash = () => {
             title="Soil climate"
             data={dummySoilClimate}
             yAxis="temperature"
+            yAxisUnit="°C"
             yAxisRight="humidity"
+            yAxisRightUnit="%"
             xAxis="date"
           />
         </Grid>
-      </Grid>
+      </GridContainer>
 
-      <Grid container spacing={16} alignItems="stretch" justify="space-between">
+      <GridContainer
+        container
+        spacing={16}
+        alignItems="stretch"
+        justify="space-between"
+      >
         <Grid item md={4} sm={6} xs={12} container spacing={16}>
           <Grid item xs={12}>
             <ControlCard
@@ -194,7 +230,7 @@ const Dash = () => {
         <Grid item md={4} sm={6} xs={12}>
           <TableCard title="Actions log" rows={dummyLogs} />
         </Grid>
-      </Grid>
+      </GridContainer>
     </Container>
   );
 };
