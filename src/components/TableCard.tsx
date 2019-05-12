@@ -10,9 +10,11 @@ import {
 } from '@material-ui/core';
 import styled from 'styled-components';
 
+import { ActionsLogItem } from '../store/store';
+
 interface Props {
   title: string;
-  rows: any[];
+  rows: ActionsLogItem[];
 }
 
 const ScrollablePaper = styled(Paper)`
@@ -37,14 +39,14 @@ const TableCard: FC<Props> = ({ title, rows }) => (
       <TableHead>
         <TableRow>
           <TableCell>Action</TableCell>
-          <TableCell align="right">Date</TableCell>
+          <TableCell align="right">Time ago</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {rows.map(row => (
           <TableRow key={row.id}>
             <TableCell component="th" scope="row">
-              {row.action}
+              {row.description}
             </TableCell>
             <TableCell align="right">{row.date}</TableCell>
           </TableRow>
@@ -54,4 +56,4 @@ const TableCard: FC<Props> = ({ title, rows }) => (
   </ScrollablePaper>
 );
 
-export default TableCard;
+export default React.memo(TableCard);

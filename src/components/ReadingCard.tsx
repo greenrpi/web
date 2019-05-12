@@ -44,4 +44,4 @@ const ReadingCard: FC<Props> = ({ name, iconPath, value }) => (
   </Paper>
 );
 
-export default ReadingCard;
+export default React.memo(ReadingCard);

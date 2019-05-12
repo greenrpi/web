@@ -60,4 +60,4 @@ const SplitReadingCard: FC<Props> = ({
   </Paper>
 );
 
-export default SplitReadingCard;
+export default React.memo(SplitReadingCard);

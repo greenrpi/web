@@ -1,9 +1,9 @@
-import Influx from 'influx';
+import { InfluxDB, FieldType } from 'influx';
 
 import config from '../config.json';
 
 function init(username: string, password: string) {
-  return new Influx.InfluxDB({
+  return new InfluxDB({
     host: config.DB_HOST,
     database: config.DB_NAME,
     port: config.DB_PORT,
@@ -14,9 +14,16 @@ function init(username: string, password: string) {
       {
         measurement: 'temperature',
         fields: {
-          celsius: Influx.FieldType.INTEGER,
+          celsius: FieldType.INTEGER,
         },
         tags: ['sensor'],
+      },
+      {
+        measurement: 'action',
+        fields: {
+          type: FieldType.STRING,
+        },
+        tags: ['id', 'manual'],
       },
     ],
   });

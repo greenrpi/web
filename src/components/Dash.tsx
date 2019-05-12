@@ -10,16 +10,11 @@ import rainIcon from '../res/icons/rain.svg';
 import humidityIcon from '../res/icons/humidity.svg';
 import soilIcon from '../res/icons/soil.svg';
 import ReadingCard from './ReadingCard';
-import GraphCard from './GraphCard';
-import dummyIndoorClimate from '../res/dummyIndoorClimate.json';
-import dummyLogs from '../res/dummyLogs.json';
-import dummyOutdoorClimate from '../res/dummyOutdoorClimate.json';
-import dummyPowerSupply from '../res/dummyPowerSupply.json';
-import dummySoilClimate from '../res/dummySoilClimate.json';
 import ControlCard from './ControlCard';
-import TableCard from './TableCard';
 import SplitReadingCard from './SplitReadingCard';
 import LastUpdated from './LastUpdated';
+import Graphs from './Graphs';
+import Logs from './Logs';
 
 const Logo = styled.img`
   height: 2rem;
@@ -106,7 +101,7 @@ const Dash = () => {
           <Grid item sm={6} xs={12}>
             <ReadingCard
               name="Rain"
-              value={valueOrNa(current.rain)}
+              value={`${valueOrNa(current.rain)}`}
               iconPath={rainIcon}
             />
           </Grid>
@@ -136,63 +131,18 @@ const Dash = () => {
               nameLeft="Soil - Upper"
               valueLeft={`${valueOrNa(current.soilUpperTemp)} °C/${valueOrNa(
                 current.soilUpperHumidity,
-              )} %`}
+              )}`}
               nameRight="Soil - Lower"
               valueRight={`${valueOrNa(current.soilLowerTemp)} °C/${valueOrNa(
                 current.soilLowerHumidity,
-              )} %`}
+              )}`}
               iconPath={soilIcon}
             />
           </Grid>
         </Grid>
       </GridContainer>
 
-      <GridContainer container spacing={16} alignItems="baseline">
-        <Grid item md={6} xs={12}>
-          <GraphCard
-            title="Power supply"
-            data={dummyPowerSupply}
-            yAxis="voltage"
-            yAxisUnit="V"
-            yAxisRight="input"
-            yAxisRightUnit="A"
-            xAxis="date"
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <GraphCard
-            title="Indoor climate"
-            data={dummyIndoorClimate}
-            yAxis="temperature"
-            yAxisUnit="°C"
-            yAxisRight="humidity"
-            yAxisRightUnit="%"
-            xAxis="date"
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <GraphCard
-            title="Outdoor climate"
-            data={dummyOutdoorClimate}
-            yAxis="temperature"
-            yAxisUnit="°C"
-            yAxisRight="humidity"
-            yAxisRightUnit="%"
-            xAxis="date"
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <GraphCard
-            title="Soil climate"
-            data={dummySoilClimate}
-            yAxis="temperature"
-            yAxisUnit="°C"
-            yAxisRight="humidity"
-            yAxisRightUnit="%"
-            xAxis="date"
-          />
-        </Grid>
-      </GridContainer>
+      <Graphs />
 
       <GridContainer
         container
@@ -206,30 +156,48 @@ const Dash = () => {
               name="Power controls"
               description="Microcomputer currently running."
             >
-              <Button>Shutdown</Button>
-              <Button>Reboot</Button>
+              <Button onClick={() => store.set('nextAction')('SHUTDOWN')}>
+                Shutdown
+              </Button>
+              <Button onClick={() => store.set('nextAction')('REBOOT')}>
+                Reboot
+              </Button>
             </ControlCard>
           </Grid>
           <Grid item xs={12}>
-            <ControlCard name="Windows" description="Currently fully open.">
-              <Button>Close</Button>
-              <Button>Open to 50%</Button>
-              <Button>Open</Button>
+            <ControlCard
+              name="Windows"
+              description={`Currently ${current.windows}.`}
+            >
+              <Button onClick={() => store.set('nextAction')('WINDOWS_CLOSE')}>
+                Close
+              </Button>
+              <Button
+                onClick={() => store.set('nextAction')('WINDOWS_OPEN_50')}
+              >
+                Open to 50%
+              </Button>
+              <Button onClick={() => store.set('nextAction')('WINDOWS_OPEN')}>
+                Open
+              </Button>
             </ControlCard>
           </Grid>
           <Grid item xs={12}>
-            <ControlCard name="Water pump" description="Currently not running.">
-              <Button>Turn off</Button>
-              <Button>Turn on</Button>
+            <ControlCard
+              name="Water pump"
+              description={`Currently ${current.pump}.`}
+            >
+              <Button onClick={() => store.set('nextAction')('PUMP_OFF')}>
+                Turn off
+              </Button>
+              <Button onClick={() => store.set('nextAction')('PUMP_ON')}>
+                Turn on
+              </Button>
             </ControlCard>
           </Grid>
         </Grid>
-        <Grid item md={4} sm={6} xs={12}>
-          <TableCard title="Scheduled Actions" rows={[]} />
-        </Grid>
-        <Grid item md={4} sm={6} xs={12}>
-          <TableCard title="Actions log" rows={dummyLogs} />
-        </Grid>
+
+        <Logs />
       </GridContainer>
     </Container>
   );

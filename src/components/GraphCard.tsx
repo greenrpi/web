@@ -78,4 +78,4 @@ const GraphCard: FC<Props> = ({
   </Paper>
 );
 
-export default GraphCard;
+export default React.memo(GraphCard);
